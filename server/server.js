@@ -1,14 +1,25 @@
 'use strict'
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
-const bodyparser = require('body-parser')
+const bodyParser = require('body-parser')
 const request = require('request');
+const userCtrl = require('./controllers/user-controller');
+const pollCtrl = require('./controllers/poll-controller');
 const io = require('socket.io').listen(app.listen(3000, function() {
   console.log('Listening on port: ', 3000);
 }));
 
+// mongoose.connect('mongodb://mlaythe:lynch245@ds019698.mlab.com:19698/users');
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/client'));
+
+app.get('/signup', userCtrl.signup);
+// app.get('/poll', pollCtrl.addChoice);
+
+let count = 0;
 
 //listens for a socket connection
 io.sockets.on('connection', (socket) => {
@@ -23,6 +34,13 @@ io.sockets.on('connection', (socket) => {
   //when a 'startGame' event is heard broadcast an object to all sockets
   //excluding the socket that sent the event originally
   socket.on('startGame', () => {
-    socket.broadcast.emit('polling', {'bool': true});
+    socket.broadcast.emit('polling');
+  });
+
+  socket.on('count', () => {
+    count++;
+    if (count === 2) {
+      io.sockets.emit('countCheck', count);
+    }
   });
 });

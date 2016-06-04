@@ -63,9 +63,6 @@ describe('socket connection', () => {
 
    it("should poll all clients excluding itself", (done) => {
       let client1, client2, client3;
-      const poll = {
-        'bool': true
-      };
 
       client1 = io.connect(url, options)
       client2 = io.connect(url, options);
@@ -73,15 +70,21 @@ describe('socket connection', () => {
 
       client1.emit('startGame');
 
-      client2.on('polling', (data) => {
-          expect(data.bool).to.equal(poll.bool);
-          client2.emit();
+      client1.on('polling', () => {
+        client1.emit('count');
       });
 
-      client3.on('polling', (data) => {
-          expect(data.bool).to.equal(poll.bool);
+      client2.on('polling', () => {
+        client2.emit('count');
       });
-      
-      done();
+
+      client3.on('polling', () => {
+        client3.emit('count');
+      });
+
+      client1.on('countCheck', (num) => {
+        expect(num).to.equal(2);
+        done();
+      })
    })
 });
