@@ -15,6 +15,7 @@ mongoose.connect('mongodb://mlaythe:lynch245@ds019698.mlab.com:19698/users');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/../node_modules'));
 
 app.get('*', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/../client/index.html'));

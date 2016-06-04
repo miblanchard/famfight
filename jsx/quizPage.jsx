@@ -3,6 +3,8 @@ import request from 'browser-request';
 
 import PollingBox from './pollingBoxComp.jsx';
 
+const socket = io.connect('http://localhost:3000');
+
 class QuizPage extends React.Component {
     constructor(props) {
       super(props);
@@ -23,6 +25,10 @@ class QuizPage extends React.Component {
 
       // gets the value of the radio box we click
       const ourChoice = event.currentTarget.value;
+      const objectToSend = {id: ourID, choice: [ourChoice]}
+
+      socket.emit('poll', objectToSend);
+
       this.setState({
         id: ourID,
         choice: [ourChoice],
