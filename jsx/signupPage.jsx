@@ -2,13 +2,13 @@ import React from 'react';
 import request from 'browser-request';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
-import SearchBar from './signupInput.jsx'
+import SignupInput from './signupComp.jsx'
 
 class Search extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
-      this.handleUsername = this.handleUsername.bind(this)
+      this.handleUsername = this.handleUsername.bind(this);
     }
 
     handleUsername(event) {
@@ -23,7 +23,10 @@ class Search extends React.Component {
           console.log(Router)
           if (err) console.log()
           else {
-              browserHistory.push({pathname: 'quiz', state: {id: body}})
+              browserHistory.push({pathname: 'quiz', 
+                state: {id: body,
+                }
+              })
             }
           }
         )
@@ -34,7 +37,7 @@ class Search extends React.Component {
       return (
         <div>
           <h2>Put name here!</h2>
-          <SearchBar handleUsername={this.handleUsername}/>
+          <SignupInput handleUsername={this.handleUsername}/>
         </div>
       )
     }
