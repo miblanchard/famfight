@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import SignupBox from './signupBox.jsx';
 import LoginBox from './loginBox.jsx';
-impore request from ('browser-request');
+import request from 'browser-request';
 
 class App extends React.Component {
+
     render() {
         return (
           <div>

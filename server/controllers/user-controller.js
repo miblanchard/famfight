@@ -4,8 +4,10 @@ const userController = {};
 
 userController.signup = (req, res) => {
   User.create(req.body, (err, docs) => {
-      if (err) throw new Error(err);
-      res.send(docs._id);
+    if (err) throw new Error(err);
+    console.log('created new user', docs);
+
+    res.send(docs._id);
   });
 }
 
