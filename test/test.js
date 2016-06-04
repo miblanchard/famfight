@@ -19,7 +19,7 @@ describe('socket connection', () => {
 
     client.on('new user', (username) => {
       expect(username).to.be.a('string');
-      expect(username).to.equal('Johnny Boy has joined');
+      expect(username).to.equal('Johnny Boy has joined.');
       client.disconnect();
       done();
     });

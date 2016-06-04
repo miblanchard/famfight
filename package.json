@@ -1,5 +1,5 @@
 {
-  "name": "react_example",
+  "name": "Famfight",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "test": "mocha ./test/test"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Laythe, Austin Nwaukoni, & Jeremy Yip",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
