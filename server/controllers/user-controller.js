@@ -7,7 +7,7 @@ userController.signup = (req, res) => {
     if (err) throw new Error(err);
     console.log('created new user', docs);
 
-    res.send(docs._id);
+    res.send(docs._id).redirect('quiz');
   });
 }
 
