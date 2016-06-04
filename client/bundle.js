@@ -25947,6 +25947,7 @@
 	  _createClass(Search, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props.location.state);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -26561,18 +26562,17 @@
 	  _createClass(Search, [{
 	    key: 'handleUsername',
 	    value: function handleUsername(event) {
-	      var _this2 = this;
-
 	      // when pressing enter in the search bar
 	      if (event.keyCode === 13) {
+	        console.log(event.target.value);
 	        (0, _browserRequest2.default)({
 	          method: 'POST',
 	          url: 'http://localhost:3000/signup',
 	          json: { username: event.target.value }
 	        }, function (err, response, body) {
-	          if (err) console.log('error', err);else {
-	            console.log(body);
-	            _this2.setState(body);
+	          console.log(_reactRouter.Router);
+	          if (err) console.log();else {
+	            _reactRouter.browserHistory.push({ pathname: 'quiz', state: { id: body } });
 	          }
 	        });
 	      }
