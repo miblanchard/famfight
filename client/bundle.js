@@ -25963,13 +25963,13 @@
 
 	      // gets the value of the radio box we click
 	      var ourChoice = event.currentTarget.value;
-	      var objectToSend = { id: ourID, choice: [ourChoice] };
+	      var objectToSend = { id: ourID, choices: [ourChoice] };
 
 	      socket.emit('poll', objectToSend);
 
 	      this.setState({
 	        id: ourID,
-	        choice: [ourChoice],
+	        choices: [ourChoice],
 	        finishedWithPoll: true
 	      });
 	    }
@@ -25978,9 +25978,13 @@
 	    value: function handleSecondRadioButtonChange(event) {
 	      var ourID = this.props.location.state.id;
 	      var ourChoice = event.currentTarget.value;
+	      var objectToSend = { id: ourID, choices: [ourChoice] };
+
+	      socket.emit('poll', objectToSend);
+
 	      this.setState({
 	        id: ourID,
-	        choice: [ourChoice],
+	        choices: [ourChoice],
 	        finishedWithPoll: true
 	      });
 	    }
