@@ -4,6 +4,8 @@ body {
   background-color: #FAFAFA;
   font-family: ProximaNova;
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 .quizBoxDesign {

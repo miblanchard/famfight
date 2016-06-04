@@ -14,7 +14,6 @@ class App extends React.Component {
               <Route path='/' component={SignupPage}/>
               <Route path='/quiz' component={QuizPage}/>
             </Router>
-
           </div>
         )
     }

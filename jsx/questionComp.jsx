@@ -6,7 +6,7 @@ class Questions extends React.Component {
   render() {
       return (
         <div>
-          <h1>"What is my name?"</h1>
+          <h1>{this.props.question}</h1>
         </div>
       )
     }

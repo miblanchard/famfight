@@ -11,9 +11,16 @@ class QuizPage extends React.Component {
       this.state = {
         finishedWithPoll: false,
         finishedMainQuestion: false,
+        waitingForOtherPlayers: false,
+        readyForQuiz: false,
+        quizQuestion:'',
+        firstAnswer:'',
+        secondAnswer:'',
       };
       this.handleFirstRadioButtonChange = this.handleFirstRadioButtonChange.bind(this);
-      this.handleSecondRadioButtonChange = this.handleSecondRadioButtonChange.bind(this)
+      this.handleSecondRadioButtonChange = this.handleSecondRadioButtonChange.bind(this);
+      this.handleFirstQuestionButtonChange = this.handleFirstQuestionButtonChange(this);
+      this.handleSecondQuestionButtonChange = this.handleSecondQuestionButtonChange(this);
     }
 
     handleFirstRadioButtonChange(event) {
@@ -47,27 +54,36 @@ class QuizPage extends React.Component {
       this.setState({
         finishedWithPoll: true,
       })
+
     }
 
-    // answerQuestionButtonOne(event){
-    //   const ourID = this.props.location.state.id;
-    //   const ourChoice = event.currentTarget.value;
-    //   this.setState({
-    //     id: ourID,
-    //     choice: [ourChoice],
-    //     finishedMainQuestion: true,
-    //   })
-    // }
-    //
-    // answerQuestionButtonTwo(event){
-    //   const ourID = this.props.location.state.id;
-    //   const ourChoice = event.currentTarget.value;
-    //   this.setState({
-    //     id: ourID,
-    //     choice: [ourChoice],
-    //     finishedMainQuestion: true,
-    //   })
-    // }
+    handleFirstQuestionButtonChange(event) {
+      const ourID = this.props.location.state.id;
+      console.log()
+      this.setState({
+        finishedMainQuestion: true,
+      })
+    }
+    
+    handleSecondQuestionButtonChange(event) {
+      const ourID = this.props.location.state.id;
+      this.setState({
+        finishedMainQuestion: true,
+      })
+    }
+
+    componentWillUpdate() {
+      socket.on('waiting on additional polls from different sockets', () => {
+        console.log('help!')
+        if(this.state.finishedWithPoll) {
+          this.setState({waitingForOtherPlayers: true});
+        }
+      })
+      socket.on('conflict', (data) => {
+        this.setState({readyForQuiz: true});
+      });
+    }
+
     render() {
 
       // case 1: if we haven't chosen anything in a poll yet
@@ -82,10 +98,24 @@ class QuizPage extends React.Component {
         )
       }
 
-      // case 2: we've selected a choice in the poll, so render the quiz challenge
-      else {
+      // case 2: we're waiting for all players to select a choice in the poll
+      else if (this.state.waitingForOtherPlayers) {
+        return (
+          <div>
+            <h1>We waiting bro!</h1>
+          </div>
+        )
+      }
+
+      // case 3: we've selected a choice in the poll, so render the quiz challenge
+      else if (this.state.readyForQuiz){
         return(
-          <QuizBox />
+          <QuizBox firstAnswer = "x" 
+            secondAnswer = "y" 
+            question="Bitch please?"
+            handleFirstQuestionButtonChange = {this.handleFirstQuestionButtonChange}
+            handleSecondQuestionButtonChange = {this.handleSecondQuestionButtonChange}
+          />
         )
       }
    }

@@ -7,8 +7,12 @@ class QuizBox extends React.Component {
     render() {
       return (
         <div className = "quizBoxDesign">
-          <QuestionComp />
-          <AnswerComp />
+          <QuestionComp question = {this.props.question}/>
+          <AnswerComp firstAnswer = {this.props.firstAnswer}
+            secondAnswer = {this.props.secondAnswer}
+            handleFirstQuestionButtonChange = {this.props.handleFirstQuestionButtonChange}
+            handleSecondQuestionButtonChange = {this.props.handleSecondQuestionButtonChange}
+            />
         </div>
       )
     }
