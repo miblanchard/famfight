@@ -60,6 +60,28 @@ describe('socket connection', () => {
       })
     })
   });
+
+   it("should poll all clients excluding itself", (done) => {
+      let client1, client2, client3;
+      const poll = {
+        'bool': true
+      };
+
+      client1 = io.connect(url, options)
+      client2 = io.connect(url, options);
+      client3 = io.connect(url, options);
+
+      client1.emit('startGame');
+
+      client2.on('polling', (data) => {
+          expect(data.bool).to.equal(poll.bool);
+          client2.emit();
+      });
+
+      client3.on('polling', (data) => {
+          expect(data.bool).to.equal(poll.bool);
+      });
+      
+      done();
+   })
 });
-
-
