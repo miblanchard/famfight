@@ -20,4 +20,9 @@ io.sockets.on('connection', (socket) => {
   socket.on('message', (msg) => {
     io.sockets.emit('message', msg);
   });
+  //when a 'startGame' event is heard broadcast an object to all sockets
+  //excluding the socket that sent the event originally
+  socket.on('startGame', () => {
+    socket.broadcast.emit('polling', {'bool': true});
+  });
 });
