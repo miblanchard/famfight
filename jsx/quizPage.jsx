@@ -25,13 +25,13 @@ class QuizPage extends React.Component {
 
       // gets the value of the radio box we click
       const ourChoice = event.currentTarget.value;
-      const objectToSend = {id: ourID, choice: [ourChoice]}
+      const objectToSend = {id: ourID, choices: [ourChoice]}
 
       socket.emit('poll', objectToSend);
 
       this.setState({
         id: ourID,
-        choice: [ourChoice],
+        choices: [ourChoice],
         finishedWithPoll: true,
       })
     }
@@ -39,9 +39,13 @@ class QuizPage extends React.Component {
     handleSecondRadioButtonChange(event) {
       const ourID = this.props.location.state.id;
       const ourChoice = event.currentTarget.value;
+      const objectToSend = {id: ourID, choices: [ourChoice]}
+
+      socket.emit('poll', objectToSend);
+
       this.setState({
         id: ourID,
-        choice: [ourChoice],
+        choices: [ourChoice],
         finishedWithPoll: true,
       })
     }

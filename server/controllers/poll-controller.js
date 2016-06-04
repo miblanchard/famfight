@@ -18,7 +18,7 @@ pollController.addPoll = (poll, socket, io) => {
         pollController.checkPollCount(socket, io);
       });
     } else {
-      docs.choices.push(req.body.choices[0]);
+      docs.choices.push(poll.choices[0]);
       docs.save();
       pollController.checkPollCount(socket, io);
     }
