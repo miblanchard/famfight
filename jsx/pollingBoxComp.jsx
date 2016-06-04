@@ -1,5 +1,5 @@
 import React from 'react';
-import IndiePolls from './indiePolls.jsx';
+import IndiePolls from './indiePollsComp.jsx';
 
 class PollingBox extends React.Component {
 

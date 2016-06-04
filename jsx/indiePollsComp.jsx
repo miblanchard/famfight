@@ -5,8 +5,8 @@ class IndiePolls extends React.Component {
       return (
         <div>
           <form>
-            <input type = "radio" name = "Jack in Box" value = "Jack in Box"/>
-            <input type = "radio" name = "McDonalds" value = "McDonalds"/>
+            Jack in Box: <input type = "radio" name = "Jack in Box" value = "Jack in Box"/>
+            McDonalds: <input type = "radio" name = "McDonalds" value = "McDonalds"/>
             <input type = "submit" value = "Choose your polling"/>
           </form>
         </div>
