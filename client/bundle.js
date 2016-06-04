@@ -26558,7 +26558,9 @@
 	        _react2.default.createElement(
 	          "form",
 	          null,
+	          "Jack in Box:",
 	          _react2.default.createElement("input", { type: "radio", name: "Jack in Box", value: "Jack in Box" }),
+	          "McDonalds: ",
 	          _react2.default.createElement("input", { type: "radio", name: "McDonalds", value: "McDonalds" }),
 	          _react2.default.createElement("input", { type: "submit", value: "Choose your polling" })
 	        )
