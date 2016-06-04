@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoginBox extends React.component{
+class LoginBox extends React.Component {
   render(){
     return (
       <div>

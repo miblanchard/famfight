@@ -7,11 +7,14 @@ const expect = require('chai').expect,
         transports: ['websocket'],
         'force new connection': true
       },
+      //This is needed in test to make sure socket can connect to main socket.
+      //Fabricating a server that makes and connection and a response is sent back.
       user1 = {
         'name': 'Johnny Boy',
       }
 
 describe('socket connection', () => {
+
   it('should broadcast new username once connected', (done) => {
     const client = io.connect(url, options);
 
@@ -27,6 +30,7 @@ describe('socket connection', () => {
     });
   });
 
+  //Test that checks for multiple connections from users
   it('should check for socket connection from several clients', (done) => {
     let client1, client2, client3;
     const message = 'SUP';
@@ -61,6 +65,8 @@ describe('socket connection', () => {
     })
   });
 
+  //Test to see that the socket emits data to all other users except the user
+  //that sent the emit
    it("should poll all clients excluding itself", (done) => {
       let client1, client2, client3;
 
@@ -80,7 +86,7 @@ describe('socket connection', () => {
       client2.on('polling', () => {
         client2.emit('count');
       });
-      
+
       done();
 
       client3.on('polling', () => {
