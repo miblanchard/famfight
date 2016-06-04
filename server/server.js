@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const request = require('request');
 const userCtrl = require('./controllers/user-controller');
 const pollCtrl = require('./controllers/poll-controller');
+const quizCtrl = require('./controllers/quiz-controller');
 const io = require('socket.io').listen(app.listen(3000, function() {
   console.log('Listening on port: ', 3000);
 }));
@@ -15,13 +16,14 @@ mongoose.connect('mongodb://mlaythe:lynch245@ds019698.mlab.com:19698/users');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/../node_modules'));
 
 app.get('*', function (req, res, next) {
   res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 
 app.post('/signup', userCtrl.signup);
-app.post('/poll', pollCtrl.addChoice, pollCtrl.checkPoll);
+// app.post('/poll', pollCtrl.addChoice, pollCtrl.checkPoll);
 
 let count = 0;
 
@@ -46,5 +48,13 @@ io.sockets.on('connection', (socket) => {
     if (count === 2) {
       io.sockets.emit('countCheck', count);
     }
+  });
+
+  socket.on('poll', (poll) => {
+    pollCtrl.addPoll(poll, socket, io);
+  })
+
+  socket.on('quiz', (quizAnswer) => {
+    quizCtrl.addQuizAnswer(quizAnswer, socket, io);
   });
 });
