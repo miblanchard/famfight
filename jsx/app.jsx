@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import World from './world.jsx';
+import SignupBox from './signupBox.jsx';
 
 class App extends React.Component {
     render() {
         return (
           <div>
-            <h1>Hello</h1>
-            <World />
+            <h1>Signup</h1>
+            <SignupBox />
           </div>
         )
     }

@@ -68,9 +68,9 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _world = __webpack_require__(169);
+	var _signupBox = __webpack_require__(171);
 
-	var _world2 = _interopRequireDefault(_world);
+	var _signupBox2 = _interopRequireDefault(_signupBox);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -98,9 +98,9 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'Hello'
+	          'Signup'
 	        ),
-	        _react2.default.createElement(_world2.default, null)
+	        _react2.default.createElement(_signupBox2.default, null)
 	      );
 	    }
 	  }]);
@@ -20379,7 +20379,9 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 169 */
+/* 169 */,
+/* 170 */,
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20390,10 +20392,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(39);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20402,30 +20400,36 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var World = function (_React$Component) {
-	    _inherits(World, _React$Component);
+	var SignupBox = function (_React$Component) {
+	  _inherits(SignupBox, _React$Component);
 
-	    function World() {
-	        _classCallCheck(this, World);
+	  function SignupBox() {
+	    _classCallCheck(this, SignupBox);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(World).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignupBox).apply(this, arguments));
+	  }
+
+	  _createClass(SignupBox, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { method: 'POST', action: '/signup' },
+	          _react2.default.createElement('input', { name: 'username', type: 'text', placeholder: 'Enter username...' }),
+	          _react2.default.createElement('input', { name: 'password', type: 'text', placeholder: 'Enter password...' }),
+	          _react2.default.createElement('input', { type: 'submit', value: 'submit' })
+	        )
+	      );
 	    }
+	  }]);
 
-	    _createClass(World, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'h1',
-	                null,
-	                'World'
-	            );
-	        }
-	    }]);
-
-	    return World;
+	  return SignupBox;
 	}(_react2.default.Component);
 
-	module.exports = World;
+	module.exports = SignupBox;
 
 /***/ }
 /******/ ]);
