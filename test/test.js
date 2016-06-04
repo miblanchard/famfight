@@ -75,13 +75,12 @@ describe('socket connection', () => {
 
       client2.on('polling', (data) => {
           expect(data.bool).to.equal(poll.bool);
-          client2.emit();
       });
 
       client3.on('polling', (data) => {
           expect(data.bool).to.equal(poll.bool);
       });
-      
+
       done();
    })
 });
