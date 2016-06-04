@@ -2,7 +2,7 @@ import React from 'react';
 
 class IndiePolls extends React.Component {
     render() {
-      return ()
+      return (
         <div>
           <form>
             <input type = "radio" name = "Jack in Box" value = "Jack in Box"/>
