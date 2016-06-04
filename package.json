@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/server.js",
-    "test": "mocha ./test/test"
+    "test": "mocha ./test/test && mocha ./test/index"
   },
   "keywords": [],
   "author": "Michael Laythe, Austin Nwaukoni, & Jeremy Yip",
