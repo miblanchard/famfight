@@ -8,6 +8,8 @@ const io = require('socket.io').listen(app.listen(3000, function() {
   console.log('Listening on port: ', 3000);
 }));
 
+let count = 0;
+
 app.use(express.static(__dirname + '/client'));
 
 //listens for a socket connection
@@ -23,6 +25,13 @@ io.sockets.on('connection', (socket) => {
   //when a 'startGame' event is heard broadcast an object to all sockets
   //excluding the socket that sent the event originally
   socket.on('startGame', () => {
-    socket.broadcast.emit('polling', {'bool': true});
+    socket.broadcast.emit('polling');
+  });
+  
+  socket.on('count', () => {
+    count++;
+    if (count === 2) {
+      io.sockets.emit('countCheck', count);
+    }
   });
 });
