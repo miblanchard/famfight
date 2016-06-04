@@ -8,7 +8,7 @@ const expect = require('chai').expect,
         'force new connection': true
       },
       user1 = {
-        'name': 'Johnny Boy'
+        'name': 'Johnny Boy',
       }
 
 describe('socket connection', () => {

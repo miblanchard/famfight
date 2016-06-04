@@ -1,6 +1,8 @@
 const User = require('../models/user-model');
 
-function signup(req, res) {
+const userController = {};
+
+userController.signup = (req, res) => {
   User.create(req.body, (err, docs) => {
     if (err) throw new Error(err);
 
@@ -8,4 +10,4 @@ function signup(req, res) {
   });
 }
 
-module.exports = { signup };
+module.exports = userController;
