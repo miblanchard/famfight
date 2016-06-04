@@ -70,11 +70,11 @@
 
 	var _reactRouter = __webpack_require__(169);
 
-	var _quizPage = __webpack_require__(233);
+	var _quizPage = __webpack_require__(230);
 
 	var _quizPage2 = _interopRequireDefault(_quizPage);
 
-	var _signupPage = __webpack_require__(230);
+	var _signupPage = __webpack_require__(233);
 
 	var _signupPage2 = _interopRequireDefault(_signupPage);
 
@@ -25916,12 +25916,6 @@
 
 	var _browserRequest2 = _interopRequireDefault(_browserRequest);
 
-	var _reactRouter = __webpack_require__(169);
-
-	var _signupInput = __webpack_require__(232);
-
-	var _signupInput2 = _interopRequireDefault(_signupInput);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25930,57 +25924,38 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Search = function (_React$Component) {
-	  _inherits(Search, _React$Component);
+	var QuizPage = function (_React$Component) {
+	  _inherits(QuizPage, _React$Component);
 
-	  function Search(props) {
-	    _classCallCheck(this, Search);
+	  function QuizPage(props) {
+	    _classCallCheck(this, QuizPage);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Search).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuizPage).call(this, props));
 
 	    _this.state = {};
-	    _this.handleUsername = _this.handleUsername.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(Search, [{
-	    key: 'handleUsername',
-	    value: function handleUsername(event) {
-	      // when pressing enter in the search bar
-	      if (event.keyCode === 13) {
-	        console.log(event.target.value);
-	        (0, _browserRequest2.default)({
-	          method: 'POST',
-	          url: 'http://localhost:3000/signup',
-	          json: { username: event.target.value }
-	        }, function (err, response, body) {
-	          console.log(_reactRouter.Router);
-	          if (err) console.log();else {
-	            _reactRouter.browserHistory.push({ pathname: 'quiz', state: { id: body } });
-	          }
-	        });
-	      }
-	    }
-	  }, {
+	  _createClass(QuizPage, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props.location.state);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          'Put name here!'
-	        ),
-	        _react2.default.createElement(_signupInput2.default, { handleUsername: this.handleUsername })
+	          'Quiz Page!'
+	        )
 	      );
 	    }
 	  }]);
 
-	  return Search;
+	  return QuizPage;
 	}(_react2.default.Component);
 
-	module.exports = Search;
+	module.exports = QuizPage;
 
 /***/ },
 /* 231 */
@@ -26548,6 +26523,8 @@
 
 	var _browserRequest2 = _interopRequireDefault(_browserRequest);
 
+	var _reactRouter = __webpack_require__(169);
+
 	var _signupInput = __webpack_require__(232);
 
 	var _signupInput2 = _interopRequireDefault(_signupInput);
@@ -26569,21 +26546,44 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Search).call(this, props));
 
 	    _this.state = {};
+	    _this.handleUsername = _this.handleUsername.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Search, [{
+	    key: 'handleUsername',
+	    value: function handleUsername(event) {
+	      // when pressing enter in the search bar
+	      if (event.keyCode === 13) {
+	        console.log(event.target.value);
+	        (0, _browserRequest2.default)({
+	          method: 'POST',
+	          url: 'http://localhost:3000/signup',
+	          json: { username: event.target.value }
+	        }, function (err, response, body) {
+	          console.log(_reactRouter.Router);
+	          if (err) console.log();else {
+	            console.log(event.target.value);
+	            _reactRouter.browserHistory.push({ pathname: 'quiz',
+	              state: { id: body
+	              }
+	            });
+	          }
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.location.state);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          'Quiz Page!'
-	        )
+	          'Put name here!'
+	        ),
+	        _react2.default.createElement(_signupInput2.default, { handleUsername: this.handleUsername })
 	      );
 	    }
 	  }]);

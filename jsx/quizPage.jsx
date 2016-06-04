@@ -1,9 +1,7 @@
 import React from 'react';
 import request from 'browser-request';
 
-import SearchBar from './signupInput.jsx'
-
-class Search extends React.Component {
+class QuizPage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -19,4 +17,4 @@ class Search extends React.Component {
     }
 }
 
-module.exports = Search;
+module.exports = QuizPage;
