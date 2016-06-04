@@ -4,3 +4,8 @@ body {
   background-color: #FAFAFA;
   font-family: ProximaNova;
 }
+
+.quizBoxDesign {
+  border-style: solid;
+  border color: black;
+}

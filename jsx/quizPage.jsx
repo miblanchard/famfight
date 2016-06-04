@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'browser-request';
-
 import PollingBox from './pollingBoxComp.jsx';
+import QuizBox from './quizBox.jsx'
 
 class QuizPage extends React.Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class QuizPage extends React.Component {
         <div>
           <h2>Quiz Page!</h2>
           <PollingBox />
+          <QuizBox />
         </div>
       )
     }
