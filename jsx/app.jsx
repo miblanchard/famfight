@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link, hashHistory} from 'react-router';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
+import QuizPage from './quizPage.jsx'
 import SignupPage from './signupPage.jsx';
 
 class App extends React.Component {
@@ -9,8 +10,9 @@ class App extends React.Component {
         return (
           <div>
             <h1>FamFight</h1>
-            <Router history={hashHistory}>
+            <Router history={browserHistory}>
               <Route path='/' component={SignupPage}/>
+              <Route path='/quiz' component={QuizPage}/>
             </Router>
           </div>
         )

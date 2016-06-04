@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'browser-request';
+import {Router, Route, Link, hashHistory} from 'react-router';
 
 import SearchBar from './signupInput.jsx'
 
@@ -16,9 +17,9 @@ class Search extends React.Component {
         request({
           method: 'POST',
           url: 'http://localhost:3000/signup',
-          json: {query: event.target.value},
+          json: {username: event.target.value},
         }, (err, response, body) => {
-          if (err) console.log('error!', err.message)
+          if (err) console.log('error', err)
           else {
               console.log(body)
               this.setState(body);

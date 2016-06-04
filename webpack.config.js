@@ -5,6 +5,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: './index.js',
     output: {path: __dirname +'/client', filename: 'bundle.js'},
+    devtools: 'source map',
     module: {
         loaders: [
             {
