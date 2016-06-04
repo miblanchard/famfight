@@ -1,45 +1,54 @@
 const Quiz = require('./../models/quiz-model');
+const Question = require('./../models/question-model');
 
 const quizController = {};
 
 quizController.addQuizAnswer = (quizAnswer, socket, io) => {
-  Quiz.findOne(quizAnswer.id, (err, docs) => {
+  Quiz.findOne({'id': quizAnswer.id}, (err, docs) => {
     if (err) throw new Error(err);
-
-    console.log('docs quiz', docs);
-    console.log(!docs);
 
     if (!docs) {
       Quiz.create(quizAnswer, (err, doc) => {
         if (err) throw new Error(err);
+
         console.log('creating quiz', doc);
-        // res.send('choice added correctly');
-        quizController.checkQuizCount(socket, io);
+        quizController.checkWinner(quizAnswer, socket, io);
       });
     } else {
-      docs.choices.push(req.body.choices[0]);
+      docs.choices.push(quizAnswer.answer[0]);
+      Quiz.isNew = false;
       docs.save();
-      quizController.checkQuizCount(socket, io);
+      quizController.checkWinner(quizAnswer, socket, io);
     }
   });
 }
 
-quizController.checkQuizCount = (socket, io) => {
+quizController.checkWinner = (quizAnswer, socket, io) => {
   Quiz.find({}, (err, docs) => {
     if (err) throw new Error(err);
-    // console.log('docs', docs);
+
     if (docs.length === 2) {
-      console.log('length === 2', docs);
-      //check between polls to see if conflict
-      //if conflict then engage in quiz
-      //otherwise send back place to eat
-      if (docs[0].choices[docs[0].choices.length - 1] !== docs[1].choices[docs[1].choices.length - 1]) {
-        io.sockets.emit('conflict');
-      } else {
-        io.sockets.emit(`${docs[0].choices[docs[0].choices.length - 1]} tonight!!`);
-      }
-    } else {
-      io.to(socket).emit('');
+      const user1 = docs[0];
+      const length1 = user1.answers.length - 1;
+      const user1Answer = user1.answers[length1];
+
+      const user2 = docs[1];
+      const length2 = user2.answers.length - 1;
+      const user2Answer = user2.answers[length2];
+
+      Question.find({}, (err, docs) => {
+        if (err) throw new Error(err);
+
+        const answerToQuestion = docs[0].answer;
+
+        if (user1Answer === user2Answer && user1Answer === answerToQuestion) {
+          io.socket.emit('send another question'/*, newQuestion*/);
+        } else if (user1Answer === answerToQuestion && user2Answer !== answerToQuestion) {
+          io.socket.emit('user1 wins!', user1Answer);
+        } else {
+          io.socket.emit('user2 wins!', user2Answer);
+        }
+      })
     }
   });
 }

@@ -12,7 +12,7 @@ const io = require('socket.io').listen(app.listen(3000, function() {
   console.log('Listening on port: ', 3000);
 }));
 
-mongoose.connect('mongodb://mlaythe:lynch245@ds019698.mlab.com:19698/users');
+mongoose.connect('mongodb://localhost/test');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
@@ -23,7 +23,6 @@ app.get('*', function (req, res, next) {
 });
 
 app.post('/signup', userCtrl.signup);
-// app.post('/poll', pollCtrl.addChoice, pollCtrl.checkPoll);
 
 let count = 0;
 
