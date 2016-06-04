@@ -10,8 +10,10 @@ const io = require('socket.io').listen(app.listen(3000, function() {
 
 app.use(express.static(__dirname + '/client'));
 
-io.sockets.on('connection', function(socket) {
-  socket.on('connection name', function(user) {
+io.sockets.on('connection', (socket) => {
+  socket.on('connection name', (user) => {
     io.sockets.emit('new user', user.name + ' has joined.')
   })
 });
+
+
