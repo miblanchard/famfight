@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoginBox extends React.Component {
+class SignupInput extends React.Component {
     render() {
       return (
         <div>
@@ -16,6 +16,6 @@ class LoginBox extends React.Component {
     }
 }
 
-module.exports = LoginBox;
+module.exports = SignupInput;
 
 

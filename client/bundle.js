@@ -68,10 +68,6 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _signupBox = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./signupBox.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _signupBox2 = _interopRequireDefault(_signupBox);
-
 	var _reactRouter = __webpack_require__(170);
 
 	var _signupPage = __webpack_require__(239);
@@ -109,8 +105,7 @@
 	        _react2.default.createElement(
 	          _reactRouter.Router,
 	          { history: _reactRouter.hashHistory },
-	          _react2.default.createElement(_reactRouter.Route, { path: '/', component: _signupPage2.default }),
-	          _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signupBox2.default })
+	          _react2.default.createElement(_reactRouter.Route, { path: '/', component: _signupPage2.default })
 	        )
 	      );
 	    }
@@ -26509,16 +26504,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var LoginBox = function (_React$Component) {
-	  _inherits(LoginBox, _React$Component);
+	var SignupInput = function (_React$Component) {
+	  _inherits(SignupInput, _React$Component);
 
-	  function LoginBox() {
-	    _classCallCheck(this, LoginBox);
+	  function SignupInput() {
+	    _classCallCheck(this, SignupInput);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(LoginBox).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignupInput).apply(this, arguments));
 	  }
 
-	  _createClass(LoginBox, [{
+	  _createClass(SignupInput, [{
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -26534,10 +26529,10 @@
 	    }
 	  }]);
 
-	  return LoginBox;
+	  return SignupInput;
 	}(_react2.default.Component);
 
-	module.exports = LoginBox;
+	module.exports = SignupInput;
 
 /***/ }
 /******/ ]);
