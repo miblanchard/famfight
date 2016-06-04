@@ -11,7 +11,7 @@ const io = require('socket.io').listen(app.listen(3000, function() {
 app.use(express.static(__dirname + '/client'));
 
 //listens for a socket connection
-io.sockets.on('connection', (socket) => { 
+io.sockets.on('connection', (socket) => {
   //when 'connection name' is heard we pass in the user in an emit event to all sockets
   socket.on('connection name', (user) => {
     io.sockets.emit('new user', user.name + ' has joined.')
@@ -20,6 +20,9 @@ io.sockets.on('connection', (socket) => {
   socket.on('message', (msg) => {
     io.sockets.emit('message', msg);
   });
+  //when a 'startGame' event is heard broadcast an object to all sockets
+  //excluding the socket that sent the event originally
+  socket.on('startGame', () => {
+    socket.broadcast.emit('polling', {'bool': true});
+  });
 });
-
-
