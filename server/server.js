@@ -14,7 +14,7 @@ const io = require('socket.io').listen(app.listen(3000, function() {
 // mongoose.connect('mongodb://mlaythe:lynch245@ds019698.mlab.com:19698/users');
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/../client'));
 
 app.post('/signup', userCtrl.signup);
 // app.get('/poll', pollCtrl.addChoice);

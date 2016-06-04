@@ -5,6 +5,6 @@ const pollSchema = new Schema({
   id: {type: String, required: true},
 });
 
-const Poll = mongoose.model('User', pollSchema);
+const Poll = mongoose.model('Poll', pollSchema);
 
 module.exports = Poll;
