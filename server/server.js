@@ -16,7 +16,7 @@ const io = require('socket.io').listen(app.listen(3000, function() {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/client'));
 
-app.get('/signup', userCtrl.signup);
+app.post('/signup', userCtrl.signup);
 // app.get('/poll', pollCtrl.addChoice);
 
 let count = 0;
