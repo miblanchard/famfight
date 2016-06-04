@@ -25936,24 +25936,67 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuizPage).call(this, props));
 
-	    _this.state = {};
+	    _this.state = {
+	      id: '',
+	      choice: '',
+	      finishedWithPoll: false
+	    };
+	    _this.handleFirstRadioButtonChange = _this.handleFirstRadioButtonChange.bind(_this);
+	    _this.handleSecondRadioButtonChange = _this.handleSecondRadioButtonChange.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(QuizPage, [{
+	    key: 'handleFirstRadioButtonChange',
+	    value: function handleFirstRadioButtonChange(event) {
+	      // in the signupPage we make a post request and receive a mongoID in the response
+	      // the response is carried over into this react route 'quiz' through browserHistory.push
+	      // our mongoID is in props.location.state
+	      var ourID = this.props.location.state.id;
+
+	      // gets the value of the radio box we click
+	      var ourChoice = event.currentTarget.value;
+	      this.setState({
+	        id: ourID,
+	        choice: [ourChoice],
+	        finishedWithPoll: true
+	      });
+	    }
+	  }, {
+	    key: 'handleSecondRadioButtonChange',
+	    value: function handleSecondRadioButtonChange(event) {
+	      var ourID = this.props.location.state.id;
+	      var ourChoice = event.currentTarget.value;
+	      this.setState({
+	        id: ourID,
+	        choice: [ourChoice],
+	        finishedWithPoll: true
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.location.state);
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h2',
+
+	      // case 1: if we haven't chosen anything in a poll yet
+	      if (!this.state.finishedWithPoll) {
+	        return _react2.default.createElement(
+	          'div',
 	          null,
-	          'Quiz Page!'
-	        ),
-	        _react2.default.createElement(_pollingBoxComp2.default, null)
-	      );
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Quiz Page!'
+	          ),
+	          _react2.default.createElement(_pollingBoxComp2.default, { handleFirstRadioButtonChange: this.handleFirstRadioButtonChange,
+	            handleSecondRadioButtonChange: this.handleSecondRadioButtonChange
+	          })
+	        );
+	      }
+
+	      // case 2: we've selected a choice in the poll, so render the quiz challenge
+	      else {
+	          return;
+	        }
 	    }
 	  }]);
 
@@ -26519,7 +26562,6 @@
 	        }, function (err, response, body) {
 	          console.log(_reactRouter.Router);
 	          if (err) console.log();else {
-	            console.log(event.target.value);
 	            _reactRouter.browserHistory.push({ pathname: 'quiz',
 	              state: { id: body
 	              }
@@ -26590,12 +26632,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Hello Polling Box'
-	        ),
-	        _react2.default.createElement(_indiePollsComp2.default, null)
+	        _react2.default.createElement(_indiePollsComp2.default, { handleFirstRadioButtonChange: this.props.handleFirstRadioButtonChange,
+	          handleSecondRadioButtonChange: this.props.handleSecondRadioButtonChange })
 	      );
 	    }
 	  }]);
@@ -26643,11 +26681,16 @@
 	        _react2.default.createElement(
 	          "form",
 	          null,
-	          "Jack in Box: ",
-	          _react2.default.createElement("input", { type: "radio", name: "Jack in Box", value: "Jack in Box" }),
+	          "Jack in the Box: ",
+	          _react2.default.createElement("input", { type: "radio",
+	            name: "Jack in the Box",
+	            value: "Jack in the Box",
+	            onChange: this.props.handleFirstRadioButtonChange }),
 	          "McDonalds: ",
-	          _react2.default.createElement("input", { type: "radio", name: "McDonalds", value: "McDonalds" }),
-	          _react2.default.createElement("input", { type: "submit", value: "Choose your polling" })
+	          _react2.default.createElement("input", { type: "radio",
+	            name: "McDonalds",
+	            value: "McDonalds",
+	            onChange: this.props.handleSecondRadioButtonChange })
 	        )
 	      );
 	    }
