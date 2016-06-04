@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, Link, browserHistory} from 'react-router';
-
 import QuizPage from './quizPage.jsx'
 import SignupPage from './signupPage.jsx';
 
 class App extends React.Component {
+
     render() {
         return (
           <div>
@@ -14,6 +14,7 @@ class App extends React.Component {
               <Route path='/' component={SignupPage}/>
               <Route path='/quiz' component={QuizPage}/>
             </Router>
+
           </div>
         )
     }

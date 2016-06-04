@@ -21,7 +21,7 @@ app.get('*', function (req, res, next) {
 });
 
 app.post('/signup', userCtrl.signup);
-app.post('/poll', pollCtrl.addChoice);
+app.post('/poll', pollCtrl.addChoice, pollCtrl.checkPoll);
 
 let count = 0;
 
