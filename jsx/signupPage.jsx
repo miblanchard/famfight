@@ -8,7 +8,7 @@ class Search extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
-      this.handleUsername = this.handleUsername.bind(this)
+      this.handleUsername = this.handleUsername.bind(this);
     }
 
     handleUsername(event) {
@@ -23,7 +23,6 @@ class Search extends React.Component {
           console.log(Router)
           if (err) console.log()
           else {
-            console.log(event.target.value);
               browserHistory.push({pathname: 'quiz', 
                 state: {id: body,
                 }

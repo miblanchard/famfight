@@ -25932,6 +25932,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var socket = io.connect('http://localhost:3000');
+
 	var QuizPage = function (_React$Component) {
 	  _inherits(QuizPage, _React$Component);
 
@@ -25940,25 +25942,93 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuizPage).call(this, props));
 
-	    _this.state = {};
+	    _this.state = {
+	      id: '',
+	      choice: '',
+	      finishedWithPoll: false,
+	      finishedMainQuestion: false
+	    };
+	    _this.handleFirstRadioButtonChange = _this.handleFirstRadioButtonChange.bind(_this);
+	    _this.handleSecondRadioButtonChange = _this.handleSecondRadioButtonChange.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(QuizPage, [{
+	    key: 'handleFirstRadioButtonChange',
+	    value: function handleFirstRadioButtonChange(event) {
+	      // in the signupPage we make a post request and receive a mongoID in the response
+	      // the response is carried over into this react route 'quiz' through browserHistory.push
+	      // our mongoID is in props.location.state
+	      var ourID = this.props.location.state.id;
+
+	      // gets the value of the radio box we click
+	      var ourChoice = event.currentTarget.value;
+	      var objectToSend = { id: ourID, choice: [ourChoice] };
+
+	      socket.emit('poll', objectToSend);
+
+	      this.setState({
+	        id: ourID,
+	        choice: [ourChoice],
+	        finishedWithPoll: true
+	      });
+	    }
+	  }, {
+	    key: 'handleSecondRadioButtonChange',
+	    value: function handleSecondRadioButtonChange(event) {
+	      var ourID = this.props.location.state.id;
+	      var ourChoice = event.currentTarget.value;
+	      this.setState({
+	        id: ourID,
+	        choice: [ourChoice],
+	        finishedWithPoll: true
+	      });
+	    }
+
+	    // answerQuestionButtonOne(event){
+	    //   const ourID = this.props.location.state.id;
+	    //   const ourChoice = event.currentTarget.value;
+	    //   this.setState({
+	    //     id: ourID,
+	    //     choice: [ourChoice],
+	    //     finishedMainQuestion: true,
+	    //   })
+	    // }
+	    //
+	    // answerQuestionButtonTwo(event){
+	    //   const ourID = this.props.location.state.id;
+	    //   const ourChoice = event.currentTarget.value;
+	    //   this.setState({
+	    //     id: ourID,
+	    //     choice: [ourChoice],
+	    //     finishedMainQuestion: true,
+	    //   })
+	    // }
+
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.location.state);
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h2',
+
+	      // case 1: if we haven't chosen anything in a poll yet
+	      if (!this.state.finishedWithPoll) {
+	        return _react2.default.createElement(
+	          'div',
 	          null,
-	          'Quiz Page!'
-	        ),
-	        _react2.default.createElement(_pollingBoxComp2.default, null),
-	        _react2.default.createElement(_quizBox2.default, null)
-	      );
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Quiz Page!'
+	          ),
+	          _react2.default.createElement(_pollingBoxComp2.default, { handleFirstRadioButtonChange: this.handleFirstRadioButtonChange,
+	            handleSecondRadioButtonChange: this.handleSecondRadioButtonChange
+	          })
+	        );
+	      }
+
+	      // case 2: we've selected a choice in the poll, so render the quiz challenge
+	      else {
+	          return _react2.default.createElement(_quizBox2.default, null);
+	        }
 	    }
 	  }]);
 
@@ -26559,10 +26629,16 @@
 	        _react2.default.createElement(
 	          "form",
 	          null,
-	          "Jack in Box: ",
-	          _react2.default.createElement("input", { type: "radio", name: "Jack in Box", value: "Jack in Box" }),
+	          "Jack in the Box: ",
+	          _react2.default.createElement("input", { type: "radio",
+	            name: "Jack in the Box",
+	            value: "Jack in the Box",
+	            onChange: this.props.handleFirstRadioButtonChange }),
 	          "McDonalds: ",
-	          _react2.default.createElement("input", { type: "radio", name: "McDonalds", value: "McDonalds" })
+	          _react2.default.createElement("input", { type: "radio",
+	            name: "McDonalds",
+	            value: "McDonalds",
+	            onChange: this.props.handleSecondRadioButtonChange })
 	        )
 	      );
 	    }
@@ -26585,11 +26661,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _answerComp = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./answerComp.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _answerComp = __webpack_require__(235);
 
 	var _answerComp2 = _interopRequireDefault(_answerComp);
 
-	var _questionComp = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./questionComp.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _questionComp = __webpack_require__(236);
 
 	var _questionComp2 = _interopRequireDefault(_questionComp);
 
@@ -26628,8 +26704,103 @@
 	module.exports = QuizBox;
 
 /***/ },
-/* 235 */,
-/* 236 */,
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Answers = function (_React$Component) {
+	  _inherits(Answers, _React$Component);
+
+	  function Answers() {
+	    _classCallCheck(this, Answers);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Answers).apply(this, arguments));
+	  }
+
+	  _createClass(Answers, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("input", { type: "radio", name: "Austin", value: "Austin" }),
+	        "Austin",
+	        _react2.default.createElement("input", { type: "radio", name: "Jeremy", value: "Jeremy" }),
+	        "Jeremy"
+	      );
+	    }
+	  }]);
+
+	  return Answers;
+	}(_react2.default.Component);
+
+	module.exports = Answers;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Questions = function (_React$Component) {
+	  _inherits(Questions, _React$Component);
+
+	  function Questions() {
+	    _classCallCheck(this, Questions);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Questions).apply(this, arguments));
+	  }
+
+	  _createClass(Questions, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          '"What is my name?"'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Questions;
+	}(_react2.default.Component);
+
+	module.exports = Questions;
+
+/***/ },
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
