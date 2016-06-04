@@ -1,7 +1,7 @@
 import React from 'react';
 import request from 'browser-request';
 
-import PollingBox from './pollingComp.jsx';
+import PollingBox from './pollingBoxComp.jsx';
 
 class QuizPage extends React.Component {
     constructor(props) {

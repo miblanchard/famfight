@@ -2,7 +2,7 @@ import React from 'react';
 import request from 'browser-request';
 import {Router, Route, Link, browserHistory} from 'react-router';
 
-import SignupInput from './signupInput.jsx'
+import SignupInput from './signupComp.jsx'
 
 class Search extends React.Component {
     constructor(props) {
