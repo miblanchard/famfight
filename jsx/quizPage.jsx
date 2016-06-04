@@ -10,6 +10,7 @@ class Search extends React.Component {
     }
 
     render() {
+      console.log(this.props.location.state);
       return (
         <div>
           <h2>Quiz Page!</h2>

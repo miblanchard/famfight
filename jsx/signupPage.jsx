@@ -1,6 +1,6 @@
 import React from 'react';
 import request from 'browser-request';
-import {Router, Route, Link, hashHistory} from 'react-router';
+import {Router, Route, Link, browserHistory} from 'react-router';
 
 import SearchBar from './signupInput.jsx'
 
@@ -14,15 +14,16 @@ class Search extends React.Component {
     handleUsername(event) {
       // when pressing enter in the search bar
       if(event.keyCode === 13) {
+        console.log(event.target.value);
         request({
           method: 'POST',
           url: 'http://localhost:3000/signup',
           json: {username: event.target.value},
         }, (err, response, body) => {
-          if (err) console.log('error', err)
+          console.log(Router)
+          if (err) console.log()
           else {
-              console.log(body)
-              this.setState(body);
+              browserHistory.push({pathname: 'quiz', state: {id: body}})
             }
           }
         )
