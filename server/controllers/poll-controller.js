@@ -4,21 +4,18 @@ const User = require('../models/user-model');
 const pollController = {};
 
 pollController.addPoll = (poll, socket, io) => {
-  Poll.findOne(poll.id, (err, docs) => {
+  Poll.findOne({'id': poll.id}, (err, docs) => {
     if (err) throw new Error(err);
 
-    console.log('docs poll', docs);
-    console.log(!docs);
-
-    if (!docs) {
+    if (docs === null) {
       Poll.create(poll, (err, doc) => {
         if (err) throw new Error(err);
-        console.log('creating poll', doc);
         // res.send('choice added correctly');
         pollController.checkPollCount(socket, io);
       });
     } else {
       docs.choices.push(poll.choices[0]);
+      Poll.isNew = false;
       docs.save();
       pollController.checkPollCount(socket, io);
     }
@@ -28,7 +25,7 @@ pollController.addPoll = (poll, socket, io) => {
 pollController.checkPollCount = (socket, io) => {
   Poll.find({}, (err, docs) => {
     if (err) throw new Error(err);
-    // console.log('docs', docs);
+
     if (docs.length === 2) {
       console.log('length === 2', docs);
       //check between polls to see if conflict
