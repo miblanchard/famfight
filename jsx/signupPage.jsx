@@ -16,11 +16,10 @@ class Search extends React.Component {
         request({
           method: 'POST',
           url: 'http://localhost:3000/signup',
-          json: {query: event.target.value},
+          json: {username: event.target.value},
         }, (err, response, body) => {
           if (err) console.log('error!', err.message)
           else {
-              console.log(body)
               this.setState(body);
             }
           }
