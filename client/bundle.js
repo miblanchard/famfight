@@ -25916,13 +25916,9 @@
 
 	var _browserRequest2 = _interopRequireDefault(_browserRequest);
 
-	var _pollingComp = __webpack_require__(232);
+	var _pollingComp = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./pollingComp.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _pollingComp2 = _interopRequireDefault(_pollingComp);
-
-	var _signupInput = __webpack_require__(234);
-
-	var _signupInput2 = _interopRequireDefault(_signupInput);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25932,19 +25928,19 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Search = function (_React$Component) {
-	  _inherits(Search, _React$Component);
+	var QuizPage = function (_React$Component) {
+	  _inherits(QuizPage, _React$Component);
 
-	  function Search(props) {
-	    _classCallCheck(this, Search);
+	  function QuizPage(props) {
+	    _classCallCheck(this, QuizPage);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Search).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(QuizPage).call(this, props));
 
 	    _this.state = {};
 	    return _this;
 	  }
 
-	  _createClass(Search, [{
+	  _createClass(QuizPage, [{
 	    key: 'render',
 	    value: function render() {
 	      console.log(this.props.location.state);
@@ -25961,10 +25957,10 @@
 	    }
 	  }]);
 
-	  return Search;
+	  return QuizPage;
 	}(_react2.default.Component);
 
-	module.exports = Search;
+	module.exports = QuizPage;
 
 /***/ },
 /* 231 */
@@ -26467,163 +26463,9 @@
 
 
 /***/ },
-/* 232 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _indiePolls = __webpack_require__(233);
-
-	var _indiePolls2 = _interopRequireDefault(_indiePolls);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var PollingBox = function (_React$Component) {
-	  _inherits(PollingBox, _React$Component);
-
-	  function PollingBox() {
-	    _classCallCheck(this, PollingBox);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(PollingBox).apply(this, arguments));
-	  }
-
-	  _createClass(PollingBox, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Hello Polling Box'
-	        ),
-	        _react2.default.createElement(_indiePolls2.default, null)
-	      );
-	    }
-	  }]);
-
-	  return PollingBox;
-	}(_react2.default.Component);
-
-	module.exports = PollingBox;
-
-/***/ },
-/* 233 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var IndiePolls = function (_React$Component) {
-	  _inherits(IndiePolls, _React$Component);
-
-	  function IndiePolls() {
-	    _classCallCheck(this, IndiePolls);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IndiePolls).apply(this, arguments));
-	  }
-
-	  _createClass(IndiePolls, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(
-	          "form",
-	          null,
-	          "Jack in Box:",
-	          _react2.default.createElement("input", { type: "radio", name: "Jack in Box", value: "Jack in Box" }),
-	          "McDonalds: ",
-	          _react2.default.createElement("input", { type: "radio", name: "McDonalds", value: "McDonalds" }),
-	          _react2.default.createElement("input", { type: "submit", value: "Choose your polling" })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return IndiePolls;
-	}(_react2.default.Component);
-
-	module.exports = IndiePolls;
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SignupInput = function (_React$Component) {
-	  _inherits(SignupInput, _React$Component);
-
-	  function SignupInput() {
-	    _classCallCheck(this, SignupInput);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignupInput).apply(this, arguments));
-	  }
-
-	  _createClass(SignupInput, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement("input", { name: "username",
-	          type: "text",
-	          placeholder: "Mirror mirror on the wall...",
-	          defaultValue: "",
-	          id: "searchBar",
-	          onKeyDown: this.props.handleUsername })
-	      );
-	    }
-	  }]);
-
-	  return SignupInput;
-	}(_react2.default.Component);
-
-	module.exports = SignupInput;
-
-/***/ },
+/* 232 */,
+/* 233 */,
+/* 234 */,
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26641,7 +26483,7 @@
 
 	var _reactRouter = __webpack_require__(169);
 
-	var _signupInput = __webpack_require__(234);
+	var _signupInput = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./signupInput.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _signupInput2 = _interopRequireDefault(_signupInput);
 
@@ -26679,7 +26521,11 @@
 	        }, function (err, response, body) {
 	          console.log(_reactRouter.Router);
 	          if (err) console.log();else {
-	            _reactRouter.browserHistory.push({ pathname: 'quiz', state: { id: body } });
+	            console.log(event.target.value);
+	            _reactRouter.browserHistory.push({ pathname: 'quiz',
+	              state: { id: body
+	              }
+	            });
 	          }
 	        });
 	      }

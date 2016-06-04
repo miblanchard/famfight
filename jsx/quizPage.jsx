@@ -1,9 +1,9 @@
 import React from 'react';
 import request from 'browser-request';
-import PollingBox from './pollingComp.jsx';
-import SearchBar from './signupInput.jsx'
 
-class Search extends React.Component {
+import PollingBox from './pollingComp.jsx';
+
+class QuizPage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -19,4 +19,4 @@ class Search extends React.Component {
     }
 }
 
-module.exports = Search;
+module.exports = QuizPage;
