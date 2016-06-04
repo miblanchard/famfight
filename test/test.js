@@ -27,7 +27,7 @@ describe('socket connection', () => {
     });
   });
 
-  it('should check for socket connection from several clients'), (done) => {
+  it('should check for socket connection from several clients', (done) => {
     let client1, client2, client3;
     const message = 'SUP';
     let messages = 0;
@@ -59,7 +59,7 @@ describe('socket connection', () => {
         })
       })
     })
-  }
+  });
 });
 
 
