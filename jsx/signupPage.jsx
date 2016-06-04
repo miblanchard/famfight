@@ -20,12 +20,10 @@ class Search extends React.Component {
           url: 'http://localhost:3000/signup',
           json: {username: event.target.value},
         }, (err, response, body) => {
-          console.log(Router)
-          if (err) console.log()
+          if (err) console.log('error', err)
           else {
               browserHistory.push({pathname: 'quiz', 
                 state: {id: body,
-                  username: event.target.value,
                 }
               })
             }
