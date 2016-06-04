@@ -1,12 +1,13 @@
 import React from 'react';
-import indiePolls from './individualPolls.jsx';
+import IndiePolls from './indiePolls.jsx';
 
 class PollingBox extends React.Component {
 
     render() {
       return (
         <div>
-          <indiePolls />
+          <h1>Hello Polling Box</h1>
+          <IndiePolls />
         </div>
       )
     }
