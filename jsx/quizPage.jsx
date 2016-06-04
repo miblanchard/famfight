@@ -27,6 +27,8 @@ class QuizPage extends React.Component {
       const ourChoice = event.currentTarget.value;
       const objectToSend = {id: ourID, choices: [ourChoice]}
 
+      console.log(objectToSend);
+
       socket.emit('poll', objectToSend);
 
       this.setState({
@@ -40,6 +42,8 @@ class QuizPage extends React.Component {
       const ourID = this.props.location.state.id;
       const ourChoice = event.currentTarget.value;
       const objectToSend = {id: ourID, choices: [ourChoice]}
+      console.log(this.props.location.state.username);
+      console.log(objectToSend)
 
       socket.emit('poll', objectToSend);
 

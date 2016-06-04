@@ -25,6 +25,7 @@ class Search extends React.Component {
           else {
               browserHistory.push({pathname: 'quiz', 
                 state: {id: body,
+                  username: event.target.value,
                 }
               })
             }
