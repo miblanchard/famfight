@@ -45,7 +45,7 @@ A family-oriented platform to resolve disputes amongst siblings who can't decide
 
 <li>Provide other games upon conflict instead of just a quiz</li>
 
-<li>Offer custom polling options, such as: homecooked meals, different polling questions (choose movies, chores, etc.)</li>
+<li>Offer custom polling options, such as: homecooked meals, movies, chores, etc.</li>
 </ul>
 <br /> <br />
 
