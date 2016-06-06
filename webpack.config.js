@@ -18,6 +18,8 @@ module.exports = {
             }
         ]
     },
+
+    // minifying jsx
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
           compress: { warnings: false }

@@ -21,19 +21,17 @@ class QuizPage extends React.Component {
     }
 
     handleFirstRadioButtonChange(event) {
-      // in the signupPage we make a post request and receive a mongoID in the response
+      // in the signupPage we make a post request and receive a mongoID
       // the response is carried over into this react route 'quiz' through browserHistory.push
       // our mongoID is in props.location.state
       const ourID = this.props.location.state.id;
+      const ourRadioButtonChoice = event.currentTarget.value;
+      const objectToSend = {id: ourID, choices: [ourRadioButtonChoice]}
 
-      // gets the value of the radio box we click
-      const ourChoice = event.currentTarget.value;
-      const objectToSend = {id: ourID, choices: [ourChoice]}
-
-      console.log(objectToSend);
-
+      // send a 'poll' event to the socket listenening on the server with relevant info
       socket.emit('poll', objectToSend);
 
+      // rerender the page without the poll
       this.setState({
         finishedWithPoll: true,
       })
@@ -41,17 +39,14 @@ class QuizPage extends React.Component {
 
     handleSecondRadioButtonChange(event) {
       const ourID = this.props.location.state.id;
-      const ourChoice = event.currentTarget.value;
-      const objectToSend = {id: ourID, choices: [ourChoice]}
-      console.log(this.props.location.state.username);
-      console.log(objectToSend)
+      const ourRadioButtonChoice = event.currentTarget.value;
+      const objectToSend = {id: ourID, choices: [ourRadioButtonChoice]}
 
       socket.emit('poll', objectToSend);
 
       this.setState({
         finishedWithPoll: true,
       })
-
     }
 
     // handleFirstQuestionButtonChange(event) {
@@ -68,12 +63,20 @@ class QuizPage extends React.Component {
     //   })
     // }
 
+    // when we call setState and before the render
     componentWillUpdate() {
+
+      // listen for the socket event 'waiting on...' sent from the server
       socket.on('waiting on additional polls from different sockets', () => {
+
+        // render a waiting screen if other competitors haven't selected a poll option
+        // NOTE** we had trouble getting this page to render
         if(this.state.finishedWithPoll) {
           this.setState({waitingForOtherPlayers: true});
         }
       })
+
+      //
       socket.on('conflict', (data) => {
         this.setState({readyForQuiz: true});
       });
@@ -94,16 +97,16 @@ class QuizPage extends React.Component {
       }
 
       // case 2: we're waiting for all players to select a choice in the poll
-      // had problems implementing this page
+      // NOTE** we had trouble having this page render
       else if (this.state.waitingForOtherPlayers) {
         return (
           <div>
-            <h1>We waiting bro!</h1>
+            <h1>We're waiting bro!</h1>
           </div>
         )
       }
 
-      // case 3: we've selected a choice in the poll, so render the quiz challenge
+      // case 3: all sockets have selected a choice in the poll, so render the quiz challenge 
       else if (this.state.readyForQuiz){
         return(
           <QuizBox firstAnswer = "Heisenberg" 

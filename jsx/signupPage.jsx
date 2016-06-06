@@ -4,7 +4,7 @@ import {Router, Route, Link, browserHistory} from 'react-router';
 
 import SignupInput from './signupComp.jsx'
 
-class Search extends React.Component {
+class SignupPage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {};
@@ -12,9 +12,11 @@ class Search extends React.Component {
     }
 
     handleUsername(event) {
-      // when pressing enter in the search bar
+      // when pressing enter in the input box of <SignupInput />
       if(event.keyCode === 13) {
-        console.log(event.target.value);
+
+        // send a post request to the server 
+        // event.target.value is whatever was typed into the input box
         request({
           method: 'POST',
           url: 'http://localhost:3000/signup',
@@ -22,11 +24,14 @@ class Search extends React.Component {
         }, (err, response, body) => {
           if (err) console.log('error', err)
           else {
-              browserHistory.push({pathname: 'quiz', 
-                state: {id: body,
-                }
-              })
-            }
+
+            // if successful, redirect to quiz page
+            // in the body is a mongoID sent back from the server
+            // we make that ID available in the quiz page we route to
+            browserHistory.push({pathname: 'quiz', 
+              state: {id: body,}
+            })
+          }
           }
         )
       }
@@ -42,4 +47,4 @@ class Search extends React.Component {
     }
 }
 
-module.exports = Search;
+module.exports = SignupPage;
