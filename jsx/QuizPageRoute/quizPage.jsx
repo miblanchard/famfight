@@ -16,6 +16,8 @@ class QuizPage extends React.Component {
       };
       this.handleFirstPollButtonChange = this.handleFirstPollButtonChange.bind(this);
       this.handleSecondPollButtonChange = this.handleSecondPollButtonChange.bind(this);
+
+      // NOTE**we were in the process of adding functionality to radio buttons inside the quizBox**
       // this.handleFirstQuestionButtonChange = this.handleFirstQuestionButtonChange(this);
       // this.handleSecondQuestionButtonChange = this.handleSecondQuestionButtonChange(this);
     }
@@ -77,7 +79,7 @@ class QuizPage extends React.Component {
         }
       })
 
-      //
+      // render the quizbox challenge if competitors disagree where to eat
       socket.on('conflict', (data) => {
         this.setState({readyForQuiz: true});
       });
@@ -85,7 +87,7 @@ class QuizPage extends React.Component {
 
     render() {
 
-      // case 1: if we haven't chosen anything in a poll yet
+      // case 1: if we haven't chosen anything in a poll yet, render polling box
       if (!this.state.finishedWithPoll) {
         return (
           <div>

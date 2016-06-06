@@ -17,6 +17,7 @@ class SignupPage extends React.Component {
 
         // send a post request to the server 
         // event.target.value is whatever was typed into the input box
+        // server is expecting request body to contain json object
         request({
           method: 'POST',
           url: 'http://localhost:3000/signup',
@@ -29,7 +30,7 @@ class SignupPage extends React.Component {
             // in the body is a mongoID sent back from the server
             // we make that ID available in the quiz page we route to
             browserHistory.push({pathname: 'quiz', 
-              state: {id: body,}
+              state: {id: body}
             })
           }
           }
