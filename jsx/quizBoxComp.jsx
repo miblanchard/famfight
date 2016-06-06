@@ -12,7 +12,7 @@ class QuizBox extends React.Component {
             secondAnswer = {this.props.secondAnswer}
             handleFirstQuestionButtonChange = {this.props.handleFirstQuestionButtonChange}
             handleSecondQuestionButtonChange = {this.props.handleSecondQuestionButtonChange}
-            />
+          />
         </div>
       )
     }

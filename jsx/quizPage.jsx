@@ -13,14 +13,11 @@ class QuizPage extends React.Component {
         finishedMainQuestion: false,
         waitingForOtherPlayers: false,
         readyForQuiz: false,
-        quizQuestion:'',
-        firstAnswer:'',
-        secondAnswer:'',
       };
       this.handleFirstRadioButtonChange = this.handleFirstRadioButtonChange.bind(this);
       this.handleSecondRadioButtonChange = this.handleSecondRadioButtonChange.bind(this);
-      this.handleFirstQuestionButtonChange = this.handleFirstQuestionButtonChange(this);
-      this.handleSecondQuestionButtonChange = this.handleSecondQuestionButtonChange(this);
+      // this.handleFirstQuestionButtonChange = this.handleFirstQuestionButtonChange(this);
+      // this.handleSecondQuestionButtonChange = this.handleSecondQuestionButtonChange(this);
     }
 
     handleFirstRadioButtonChange(event) {
@@ -57,24 +54,22 @@ class QuizPage extends React.Component {
 
     }
 
-    handleFirstQuestionButtonChange(event) {
-      const ourID = this.props.location.state.id;
-      console.log()
-      this.setState({
-        finishedMainQuestion: true,
-      })
-    }
+    // handleFirstQuestionButtonChange(event) {
+    //   const ourID = this.props.location.state.id;
+    //   this.setState({
+    //     finishedMainQuestion: true,
+    //   })
+    // }
     
-    handleSecondQuestionButtonChange(event) {
-      const ourID = this.props.location.state.id;
-      this.setState({
-        finishedMainQuestion: true,
-      })
-    }
+    // handleSecondQuestionButtonChange(event) {
+    //   const ourID = this.props.location.state.id;
+    //   this.setState({
+    //     finishedMainQuestion: true,
+    //   })
+    // }
 
     componentWillUpdate() {
       socket.on('waiting on additional polls from different sockets', () => {
-        console.log('help!')
         if(this.state.finishedWithPoll) {
           this.setState({waitingForOtherPlayers: true});
         }
@@ -99,6 +94,7 @@ class QuizPage extends React.Component {
       }
 
       // case 2: we're waiting for all players to select a choice in the poll
+      // had problems implementing this page
       else if (this.state.waitingForOtherPlayers) {
         return (
           <div>
@@ -110,9 +106,9 @@ class QuizPage extends React.Component {
       // case 3: we've selected a choice in the poll, so render the quiz challenge
       else if (this.state.readyForQuiz){
         return(
-          <QuizBox firstAnswer = "x" 
-            secondAnswer = "y" 
-            question="Bitch please?"
+          <QuizBox firstAnswer = "Heisenberg" 
+            secondAnswer = "White" 
+            question="Say my name."
             handleFirstQuestionButtonChange = {this.handleFirstQuestionButtonChange}
             handleSecondQuestionButtonChange = {this.handleSecondQuestionButtonChange}
           />

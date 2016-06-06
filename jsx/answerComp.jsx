@@ -11,11 +11,13 @@ class Answers extends React.Component {
              type = "radio" 
              name = "firstQuestion" 
              value = {this.props.firstAnswer} 
+             onChange = {this.props.handleFirstQuestionButtonChange}
              />
             {this.props.secondAnswer} <input 
             type = "radio" 
             name = "secondQuestion" 
             value = {this.props.secondAnswer}
+            onChange = {this.props.handleSecondQuestionButtonChange}
             />
           </form>
         </div>
