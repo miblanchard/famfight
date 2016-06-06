@@ -21,7 +21,7 @@ A family-oriented platform to resolve disputes amongst families who can't come t
 
   <li>Upon signup, user is created in mongo database, and their unique ID is used throughout the entire process of the application</li>
 
-  <li>Backend is able to determine which user won from quiz if the two users so happen to disagree on where to go to eat</li>
+  <li>Backend is able to determine which user won from quiz if the two users so happen to disagree on where to go to eat (needs work on frontend)</li>
 
   <li>The tests for sockets include: checking if socket connects, sender of data does not get data back & if multiple users are able to send data to each other</li>
 </ul>
