@@ -14,13 +14,13 @@ class QuizPage extends React.Component {
         waitingForOtherPlayers: false,
         readyForQuiz: false,
       };
-      this.handleFirstRadioButtonChange = this.handleFirstRadioButtonChange.bind(this);
-      this.handleSecondRadioButtonChange = this.handleSecondRadioButtonChange.bind(this);
+      this.handleFirstPollButtonChange = this.handleFirstPollButtonChange.bind(this);
+      this.handleSecondPollButtonChange = this.handleSecondPollButtonChange.bind(this);
       // this.handleFirstQuestionButtonChange = this.handleFirstQuestionButtonChange(this);
       // this.handleSecondQuestionButtonChange = this.handleSecondQuestionButtonChange(this);
     }
 
-    handleFirstRadioButtonChange(event) {
+    handleFirstPollButtonChange(event) {
       // in the signupPage we make a post request and receive a mongoID
       // the response is carried over into this react route 'quiz' through browserHistory.push
       // our mongoID is in props.location.state
@@ -37,7 +37,7 @@ class QuizPage extends React.Component {
       })
     }
 
-    handleSecondRadioButtonChange(event) {
+    handleSecondPollButtonChange(event) {
       const ourID = this.props.location.state.id;
       const ourRadioButtonChoice = event.currentTarget.value;
       const objectToSend = {id: ourID, choices: [ourRadioButtonChoice]}
@@ -49,6 +49,7 @@ class QuizPage extends React.Component {
       })
     }
 
+    // NOTE ** we were in the process of adding functionality to radio buttons inside the quizBox**
     // handleFirstQuestionButtonChange(event) {
     //   const ourID = this.props.location.state.id;
     //   this.setState({
@@ -70,7 +71,7 @@ class QuizPage extends React.Component {
       socket.on('waiting on additional polls from different sockets', () => {
 
         // render a waiting screen if other competitors haven't selected a poll option
-        // NOTE** we had trouble getting this page to render
+        // NOTE** we had trouble getting this page to render **
         if(this.state.finishedWithPoll) {
           this.setState({waitingForOtherPlayers: true});
         }
@@ -89,15 +90,15 @@ class QuizPage extends React.Component {
         return (
           <div>
             <h2>Quiz Page!</h2>
-            <PollingBox handleFirstRadioButtonChange = {this.handleFirstRadioButtonChange}
-              handleSecondRadioButtonChange = {this.handleSecondRadioButtonChange}
+            <PollingBox handleFirstPollButtonChange = {this.handleFirstPollButtonChange}
+              handleSecondPollButtonChange = {this.handleSecondPollButtonChange}
             />
           </div>
         )
       }
 
       // case 2: we're waiting for all players to select a choice in the poll
-      // NOTE** we had trouble having this page render
+      // NOTE** we had trouble having this page render **
       else if (this.state.waitingForOtherPlayers) {
         return (
           <div>

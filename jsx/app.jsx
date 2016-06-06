@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link, browserHistory} from 'react-router';
-import QuizPage from './quizPage.jsx'
-import SignupPage from './signupPage.jsx';
+import {Router, Route, browserHistory} from 'react-router';
+import QuizPage from './QuizPageRoute/quizPage.jsx'
+import SignupPage from './SignupPageRoute/signupPage.jsx';
 
 class App extends React.Component {
 

@@ -6,8 +6,8 @@ class PollingBox extends React.Component {
     render() {
       return (
         <div>
-          <IndiePolls handleFirstRadioButtonChange = {this.props.handleFirstRadioButtonChange}
-            handleSecondRadioButtonChange = {this.props.handleSecondRadioButtonChange}/>
+          <IndiePolls handleFirstPollButtonChange = {this.props.handleFirstPollButtonChange}
+            handleSecondPollButtonChange = {this.props.handleSecondPollButtonChange}/>
         </div>
       )
     }

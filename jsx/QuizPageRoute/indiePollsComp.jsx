@@ -8,11 +8,11 @@ class IndiePolls extends React.Component {
             Jack in the Box: <input type = "radio"
               name = "Jack in the Box"
               value = "Jack in the Box"
-              onChange = {this.props.handleFirstRadioButtonChange}/>
+              onChange = {this.props.handleFirstPollButtonChange}/>
             McDonalds: <input type = "radio"
               name = "McDonalds"
               value = "McDonalds"
-              onChange = {this.props.handleSecondRadioButtonChange}/>
+              onChange = {this.props.handleSecondPollButtonChange}/>
           </form>
         </div>
       )
